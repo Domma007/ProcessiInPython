@@ -1,0 +1,19 @@
+import multiprocessing as mp
+import os
+import time
+
+def greating(s):
+	while True:
+		print(f">> {s}! pid: {os.getpid()}, ppid: {os.getppid()} ")
+		time.sleep(0.1)
+
+
+
+if __name__ == '__main__':
+	print(">>>> START <<<<")
+	print(f"Your system have {mp.cpu_count()} cpu(s) :: - pid: {os.getpid()}, ppid: {os.getppid()}")
+	t = mp.Process(target=greating, args=('Ping',))
+	t.start()
+	t1 = mp.Process(target=greating, args=('Pong',))
+	t1.start()
+	print(">>>> END <<<<")
